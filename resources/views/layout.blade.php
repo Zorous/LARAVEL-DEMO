@@ -410,6 +410,7 @@
             <a class="nav-item nav-link" href="/contact">contact</a>
             <a class="nav-item nav-link" href="/about">about</a>
             <a class="nav-item nav-link" href="/clients">Clients</a>
+            <a class="nav-item nav-link" href="/produits">Products</a>
           </div>
         </div>
       </nav>

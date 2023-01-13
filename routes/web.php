@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClientsController;
 
+use App\Http\Controllers\ProduitsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +21,11 @@ Route::view('/', 'welcome');
 Route::view('/contact', 'contact');
 Route::view('/about', 'about');
 Route::get('/clients', [ClientsController::class, "index"]);
+
+Route::resource('/produits', ProduitsController::class);
+Route::post('/produits/store', [ProduitsController::class,"store"]);
+
+
+// Route::get('/products', [, "index"]);
 // Route::view('/clients', 'Clients.index');
 

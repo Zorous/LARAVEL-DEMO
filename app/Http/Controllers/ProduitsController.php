@@ -1,0 +1,99 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Models\Products;
+
+class ProduitsController extends Controller
+{
+
+    public function index()
+    {
+        $produits = Products::all();
+        return view('Produits.index',['produits'=> $produits]);
+    }
+
+    public function create()
+    {
+        return view('Produits.create');
+    }
+
+    public function store(Request $request)
+    {
+        $products = new Products;
+        //REJEX
+        //'email'  => 'required|email|unique:students',
+
+   /*      $request->validate(([
+        'nom'  => 'required',
+        'description'  => 'required',
+        'prix'  => 'required',
+        'category'  => 'required',
+        'image'  => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ])); */
+
+    /*     $file_name = time() . "." . request()->image->getClientOriginExtension();
+
+        request()->image->move(public_path('uploads', $file_name));
+
+        $products = new Products; */
+//Preparing the fields
+/*         $products->nom = $request->nom;
+        $products->description = $request->description;
+        $products->prix = $request->prix;
+        $products->category = $request->category;
+        $products->image = $request->image;
+ */
+
+/*
+        $products->save();
+        return redirect('/produits')->with('success','Students added successfully!');
+ */
+
+        $products->nom = $request->input("nom");
+        $products->description = $request->input("description");
+        $products->prix = $request->input("prix");
+        $products->category = $request->input("category");
+ if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().".".$extension;
+            $file->move('uploads', $filename);
+            $products->image = $filename;
+ }
+ else{
+            return $request;
+            $products->image = "";
+ }
+        $products->save();
+        // $input = $request->all();
+        // Products::create($input);
+        return redirect("/produits")->with('success', "The product has been added on successfully");
+
+
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+
+    public function edit($id)
+    {
+        //
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
+}
