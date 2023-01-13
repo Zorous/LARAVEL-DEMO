@@ -34,7 +34,8 @@
                     <td>{{ $produit['category'] }}</td>
                     <td><img height="100px" width="200px" src={{"/uploads/".$produit['image']}} /></td>
                     <td>
-                        <button></button>
+                      <a href="{{ url('/produits/edit/'.$produit->id) }}"><button class="btn btn-warning mb-2"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                      <a href="{{ url('/produits/delete/'.$produit->id) }}"> <button class="btn btn-danger mb-2"><i class="fa-solid fa-trash"></i></button></a>
                     </td>
 
                 </tr>

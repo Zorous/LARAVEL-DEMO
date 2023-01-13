@@ -34,23 +34,7 @@ class ProduitsController extends Controller
         'image'  => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ])); */
 
-    /*     $file_name = time() . "." . request()->image->getClientOriginExtension();
 
-        request()->image->move(public_path('uploads', $file_name));
-
-        $products = new Products; */
-//Preparing the fields
-/*         $products->nom = $request->nom;
-        $products->description = $request->description;
-        $products->prix = $request->prix;
-        $products->category = $request->category;
-        $products->image = $request->image;
- */
-
-/*
-        $products->save();
-        return redirect('/produits')->with('success','Students added successfully!');
- */
 
         $products->nom = $request->input("nom");
         $products->description = $request->input("description");
@@ -83,17 +67,30 @@ class ProduitsController extends Controller
 
     public function edit($id)
     {
-        //
+        $product = Products::find($id);
+
+        return view('Produits.update',["id" => $id,"product"=>$product]);
     }
+
 
 
     public function update(Request $request, $id)
     {
-        //
+        $products = Products::find($id);
+        $products->nom = $request->input("nom");
+        $products->description = $request->input("description");
+        $products->prix = $request->input("prix");
+        $products->category = $request->input("category");
+
+        $products->update();
+        return redirect('/produits')->with("status","Data updated successfully");
+
     }
 
     public function destroy($id)
     {
-        //
+        $Products = Products::find($id);
+        $Products->delete();
+        return redirect('/produits');
     }
 }

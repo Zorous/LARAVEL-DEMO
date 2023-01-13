@@ -23,9 +23,23 @@ Route::view('/about', 'about');
 Route::get('/clients', [ClientsController::class, "index"]);
 
 Route::resource('/produits', ProduitsController::class);
+
+//add
 Route::post('/produits/store', [ProduitsController::class,"store"]);
 
 
-// Route::get('/products', [, "index"]);
-// Route::view('/clients', 'Clients.index');
+
+//update
+//1
+Route::get("/produits/edit/{id}",[ProduitsController::class,"edit"]);
+
+//2
+Route::put("/produits/update/{id}",[ProduitsController::class,"update"]);
+
+
+
+//delete
+Route::get("/produits/delete/{id}",[ProduitsController::class,"destroy"]);
+
+
 
