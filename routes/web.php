@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ClientsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
+Route::view('/contact', 'contact');
+Route::view('/about', 'about');
+Route::get('/clients', [ClientsController::class, "index"]);
+// Route::view('/clients', 'Clients.index');
+
